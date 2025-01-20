@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link></link><description>Electronic Engineer</description><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Mon, 20 Jan 2025 09:22:46 GMT</lastBuildDate><generator>marmite</generator><item><title>Introduction</title><link>/introduction.html</link><category>introduction</category><guid>/introduction.html</guid><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<p>Hello, this is my first post on my new blog generated
+by Marmite<a href="https://github.com/rochacbruno/marmite">1</a>, a very simple to use blog generator.</p>
+<p>I can write full CommonMark and GFM Markdown.</p>
+<p>Emojis 😄</p>
+]]></content:encoded></item><item><title>Blog Pages</title><link>/pages.html</link><category>blog</category><guid>/pages.html</guid><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<p>its blog content 🐍</p>
+]]></content:encoded></item></channel></rss>

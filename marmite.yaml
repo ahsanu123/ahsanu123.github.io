@@ -1,0 +1,4 @@
+name: Ah Blog
+tagline: Electronic Engineer
+menu: 
+  - ["About", "about.html"]
