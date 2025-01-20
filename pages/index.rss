@@ -1,6 +1,152 @@
-<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link></link><description>Electronic Engineer</description><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Mon, 20 Jan 2025 09:22:46 GMT</lastBuildDate><generator>marmite</generator><item><title>Introduction</title><link>/introduction.html</link><category>introduction</category><guid>/introduction.html</guid><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><source url="">index</source><content:encoded><![CDATA[<p>Hello, this is my first post on my new blog generated
-by Marmite<a href="https://github.com/rochacbruno/marmite">1</a>, a very simple to use blog generator.</p>
-<p>I can write full CommonMark and GFM Markdown.</p>
-<p>Emojis 😄</p>
-]]></content:encoded></item><item><title>Blog Pages</title><link>/pages.html</link><category>blog</category><guid>/pages.html</guid><pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate><source url="">index</source><content:encoded><![CDATA[<p>its blog content 🐍</p>
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Mon, 20 Jan 2025 22:17:47 GMT</lastBuildDate><generator>marmite</generator><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">index</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
+<p><a href="#installation-step">(skip intro if you want, its not important)</a></p>
+<p>I have a raspberry pi zero 2 w (let's call it zero 2 after this),
+but I never use it, recently I got a plan to run a local web app on my pi zero 2,
+so I try find lightest linux distro, I have several experience on archlinux with
+XWindow(xorg), so I try to install it on my zero 2, but sadly it doesn't
+work for unknown reason, I try to investigate it for a week, but no luck.</p>
+<p>Then I try to install raspios lite, its work, with <a href="https://wayfire.org/">wayfire</a> on <a href="https://wayland.freedesktop.org/">wayland</a>. although it work, the os is too slow to run browser.</p>
+<p>So I take another change to re-install archlinux with wayland, and luckly its worked,
+and here is my documentation to install it.</p>
+<blockquote>
+<h2><a href="#️-disclaimer" aria-hidden="true" class="anchor" id="️-disclaimer"></a>⚠️ Disclaimer</h2>
+<p>I am not professional about linux, so use this text at your own risk.</p>
+</blockquote>
+<hr />
+<h1><a href="#installation-step" aria-hidden="true" class="anchor" id="installation-step"></a>Installation Step</h1>
+<blockquote>
+<p>💿 Booting zero 2 with archlinuxarm os</p>
+</blockquote>
+<p>most of this part was copied from <a href="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-zero-2">official archlinuxarm installation guide</a>, and assume you work on linux for this installation.</p>
+<ul>
+<li>firstly prepare your sdcard, then insert with card reader into you pc</li>
+<li>next try to list your sdcard with <code>sudo ls /dev/sd*</code>, output command will look something like this</li>
+</ul>
+<pre><code class="language-shell">$ ls /dev/sd*
+/dev/sda  /dev/sdb  
+</code></pre>
+<ul>
+<li>you will find several device, make sure you choose correct device <strong>sdb</strong> in this case</li>
+<li>next replace all <strong>X</strong> with your device (<strong>b</strong> in this case)</li>
+<li>Start fdisk to partition the SD card</li>
+</ul>
+<pre><code class="language-shell">fdisk /dev/sdX
+</code></pre>
+<ul>
+<li>
+<p>At the fdisk prompt, delete old partitions and create a new one:</p>
+<ul>
+<li>Type o. This will clear out any partitions on the drive.</li>
+<li>Type p to list partitions. There should be no partitions left.</li>
+<li>Type n, then p for primary, 1 for the first partition on the drive, press ENTER to accept the default first sector, then type +200M for the last sector.</li>
+<li>Type t, then c to set the first partition to type W95 FAT32 (LBA).</li>
+<li>Type n, then p for primary, 2 for the second partition on the drive, and then press ENTER twice to accept the default first and last sector.</li>
+<li>Write the partition table and exit by typing w.</li>
+</ul>
+</li>
+<li>
+<p>Create and mount the FAT filesystem:</p>
+</li>
+</ul>
+<pre><code class="language-shell">mkfs.vfat /dev/sdX1
+mkdir boot
+mount /dev/sdX1 boot
+</code></pre>
+<ul>
+<li>Create and mount the ext4 filesystem:</li>
+</ul>
+<pre><code class="language-shell">mkfs.ext4 /dev/sdX2
+mkdir root
+mount /dev/sdX2 root
+</code></pre>
+<ul>
+<li>Download and extract the root filesystem (as root, not via sudo):</li>
+</ul>
+<pre><code class="language-shell">wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz
+bsdtar -xpf ArchLinuxARM-rpi-armv7-latest.tar.gz -C root
+sync
+</code></pre>
+<ul>
+<li>Move boot files to the first partition:</li>
+</ul>
+<pre><code class="language-shell">mv root/boot/* boot
+</code></pre>
+<ul>
+<li>Unmount the two partitions:</li>
+</ul>
+<pre><code class="language-shell">umount boot root
+</code></pre>
+<ul>
+<li>
+<p>Insert the SD card into the Raspberry Pi and apply 5V power.</p>
+</li>
+<li>
+<p>Use the serial console or attach HDMI and a keyboard</p>
+<ul>
+<li>login as root with username <code>root</code> and password is <code>root</code></li>
+</ul>
+</li>
+<li>
+<p>connect to network (internet)</p>
+</li>
+<li>
+<p>there is many way to connect into network, we will use <code>wpa_supplicant</code></p>
+<ul>
+<li>first generate config with <code>wpa_passphrase &lt;your-wifi-name&gt; &lt;your-wifi-password&gt; &gt; homenetwork.conf</code>, ex: <code>wpa_passphrase homenetwork 1234567890 &gt; homenetwork.conf</code></li>
+<li>then try to connect with <code>wpa_supplicant -i wlan0 -c homenetwork.conf</code>, <code>-i</code> is for interface (might be different, mine is <strong>wlan0</strong>), and <code>-c</code> is for config.</li>
+<li>try to ping <code>ping 1.1.1.1</code>, make sure you got a response</li>
+</ul>
+</li>
+<li>
+<p>Initialize the pacman keyring and populate the Arch Linux ARM package signing keys:</p>
+</li>
+</ul>
+<pre><code class="language-shell">pacman-key --init
+pacman-key --populate archlinuxarm
+</code></pre>
+<ul>
+<li>
+<p>next install several package to run wayland</p>
+<ul>
+<li><code>pacman -Syu base-devel sudo --noconfirm</code>, update and install base development package, sudo</li>
+<li><code>pacman -S wayland xorg --needed --noconfirm</code> install wayland and xorg (at the time wayland is not complete yet, and most of app was based on xorg, so there still need xorg to work)</li>
+<li><code>pacman -S sway alacritty vim less --noconfirm</code> install <em>sway</em> window manager (compositor), and alacritty for terminal emulator</li>
+</ul>
+</li>
+<li>
+<p>after installation complete, give default <code>alarm</code> user to sudo.</p>
+<ul>
+<li>run <code>visudo</code>, then uncomment <code>%wheel ALL=(ALL:ALL) ALL</code>, its about line 125</li>
+<li>type <code>:wq</code> then enter, to save and exit</li>
+</ul>
+</li>
+<li>
+<p>next copy sway config into home <code>.config</code> directory, <code>cd ~ &amp;&amp; cp /etc/sway/config .</code></p>
+</li>
+<li>
+<p>next change default terminal to use alacritty, <code>vim ~/.config/sway/config</code></p>
+<ul>
+<li>change <code>$term</code> variable to alacritty, from <code>set $term foot</code> to <code>set $term alacritty</code></li>
+<li>save and exit, type <code>:wq</code> then enter</li>
+</ul>
+</li>
+<li>
+<p>then re-login to user <code>alarm</code></p>
+</li>
+<li>
+<p>inside terminal with <code>alarm</code> user, run sway <code>sway</code>.</p>
+</li>
+</ul>
+<h2><a href="#inside-sway" aria-hidden="true" class="anchor" id="inside-sway"></a>Inside Sway</h2>
+<p>by default you can run terminal by hit <code>mod + Enter</code> (mod is _windows _key if you in windows).
+you can read other shortcut key on <code>~/.config/sway/config</code>, to ease of reading config you can run <code>cat ~/.config/sway/config | less</code></p>
+<h2><a href="#troubleshooting" aria-hidden="true" class="anchor" id="troubleshooting"></a>Troubleshooting</h2>
+<p>if something error when you run <code>sway</code>, install below then try to restart by <code>sudo reboot now</code>.</p>
+<ul>
+<li>try to install <em>glib2</em>, <code>sudo pacman -S glib2 --noconfirm</code></li>
+</ul>
+<h2><a href="#reference" aria-hidden="true" class="anchor" id="reference"></a>Reference</h2>
+<ul>
+<li><a href="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-zero-2">official archlinuxarm installation guide</a></li>
+</ul>
 ]]></content:encoded></item></channel></rss>
