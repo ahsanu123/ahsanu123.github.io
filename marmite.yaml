@@ -1,4 +1,5 @@
 name: Ah Blog
 tagline: Electronic Engineer
+url: https://ahsanu123.github.io/
 menu: 
   - ["About", "about.html"]
