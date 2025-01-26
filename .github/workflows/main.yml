@@ -24,8 +24,14 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
-      - name: Install marmite 🫙
-        run: cargo install marmite
+      # - name: Build  marmite from source 
+      #   run: cargo install marmite
+
+      - name: Download Marmite 
+        run: wget https://github.com/rochacbruno/marmite/releases/download/0.2.3/marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
+
+      - name: Extract Marmite with tar
+        run: tar -xf marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Build site 🏗️
         run: marmite . site --debug
