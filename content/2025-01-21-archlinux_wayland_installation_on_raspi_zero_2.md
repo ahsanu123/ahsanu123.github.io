@@ -118,7 +118,7 @@ pacman-key --populate archlinuxarm
 
 ## Inside Sway 
 
-by default you can run terminal by hit `mod + Enter` (mod is _windows _key if you in windows).
+by default you can run terminal by hit `mod + Enter` (mod is _windows_ key if you in windows).
 you can read other shortcut key on `~/.config/sway/config`, to ease of reading config you can run `cat ~/.config/sway/config | less`
 
 
