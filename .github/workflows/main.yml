@@ -34,7 +34,7 @@ jobs:
         run: tar -xf marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Build site 🏗️
-        run: marmite . site --debug
+        run: ./marmite . site --debug
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
