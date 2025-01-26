@@ -1,4 +1,4 @@
-name: GH Pages Deploy
+name: Marmite Github Page Deployment Action
 
 on:
   push:
@@ -24,10 +24,7 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v4
 
-      # - name: Build  marmite from source 
-      #   run: cargo install marmite
-
-      - name: Download Marmite 
+      - name: Download Marmite from Marmite Repos
         run: wget https://github.com/rochacbruno/marmite/releases/download/0.2.3/marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
 
       - name: Extract Marmite with tar

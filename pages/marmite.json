@@ -1,10 +1,10 @@
 {
   "marmite_version": "0.2.3",
-  "posts": 1,
+  "posts": 2,
   "pages": 1,
-  "generated_at": "2025-01-21 05:17:47.556637261 +07:00",
-  "timestamp": 1737411467,
-  "elapsed_time": 0.034955895,
+  "generated_at": "2025-01-26 09:43:48.309112388 +07:00",
+  "timestamp": 1737859428,
+  "elapsed_time": 0.0322165,
   "config": {
     "name": "Ah Blog",
     "tagline": "Electronic Engineer",

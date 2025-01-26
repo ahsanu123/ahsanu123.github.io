@@ -1,4 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Mon, 20 Jan 2025 22:17:47 GMT</lastBuildDate><generator>marmite</generator><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Sun, 26 Jan 2025 02:43:48 GMT</lastBuildDate><generator>marmite</generator><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
+<p><a href="https://rochacbruno.github.io/marmite/hosting.html">on marmite documentation page</a>, the author already  explain how to
+deploy generated marmite's site into github pages, but the guide is
+using <code>cargo</code> to install marmite, which mean cargo will compile it
+with github action, its ok, but taking longer than method we will using.</p>
+<h2><a href="#-steps" aria-hidden="true" class="anchor" id="-steps"></a>🐜 Steps</h2>
+<p>this github action file is copied from the jekyll action. basically we will  use
+compiled release from Marmite <a href="https://github.com/rochacbruno/marmite/releases/tag/0.2.3">github repo</a>
+we download it use <code>wget</code>, then extract it with <code>tar</code>, then running to build our site, and done!!.</p>
+<ul>
+<li>first make folder <code>.github/workflows</code> inside your Marmite root folder, <code>mkdir -p .github/workflows</code></li>
+<li>change directory into new created folder, <code>cd .github/workflows</code></li>
+<li>then make yaml file to describe our github action, <code>touch main.yml</code></li>
+<li>open with your favorite text editor(I  will use vim), <code>vim main.yml</code></li>
+<li>paste code below</li>
+</ul>
+<pre><code class="language-yaml">name: Marmite Github Page Deployment Action
+
+on:
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: &quot;pages&quot;
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Download Marmite from Marmite Repos
+        run: wget https://github.com/rochacbruno/marmite/releases/download/0.2.3/marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
+
+      - name: Extract Marmite with tar
+        run: tar -xf marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
+
+      - name: Build site 🏗️
+        run: ./marmite . site --debug
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+</code></pre>
+<ul>
+<li>
+<p>as time of writing latest marmite version was <code>0.2.3</code>, feel free to change into latest version if there are available.</p>
+</li>
+<li>
+<p>save <code>main.yml</code> file</p>
+</li>
+<li>
+<p>then push into your remote main branch</p>
+</li>
+<li>
+<p>then check if your command running on action tab inside your github repository.</p>
+</li>
+</ul>
+<h2><a href="#-references" aria-hidden="true" class="anchor" id="-references"></a>🍃 References</h2>
+<ul>
+<li><a href="https://github.com/actions/jekyll-build-pages">Jekyll Github Action</a></li>
+<li><a href="https://rochacbruno.github.io/marmite/hosting.html">Official Marmite Hosting Guide</a></li>
+</ul>
+]]></content:encoded></item><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
 <p><a href="#installation-step">(skip intro if you want, its not important)</a></p>
 <p>I have a raspberry pi zero 2 w (let's call it zero 2 after this),
 but I never use it, recently I got a plan to run a local web app on my pi zero 2,
@@ -138,7 +227,7 @@ pacman-key --populate archlinuxarm
 </li>
 </ul>
 <h2><a href="#inside-sway" aria-hidden="true" class="anchor" id="inside-sway"></a>Inside Sway</h2>
-<p>by default you can run terminal by hit <code>mod + Enter</code> (mod is _windows _key if you in windows).
+<p>by default you can run terminal by hit <code>mod + Enter</code> (mod is <em>windows</em> key if you in windows).
 you can read other shortcut key on <code>~/.config/sway/config</code>, to ease of reading config you can run <code>cat ~/.config/sway/config | less</code></p>
 <h2><a href="#troubleshooting" aria-hidden="true" class="anchor" id="troubleshooting"></a>Troubleshooting</h2>
 <p>if something error when you run <code>sway</code>, install below then try to restart by <code>sudo reboot now</code>.</p>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <meta name="generator" content="Marmite" />
+    
+<meta property="og:title" content="Deploying Marmite Site To Github Pages With Github Action">
+
+<meta property="og:description" content="💤 Introduction
+on marmite documentation page, the author already  explain how to
+deploy generated ma...">
+
+
+<meta property="og:url" content="https://ahsanu123.github.io/deploying-marmite-site-to-github-pages-with-github-action.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Ah Blog">
+
+<meta property="article:published_time" content=" 2025-01-26T00:00:00+00:00">
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ahsanu123.github.io/deploying-marmite-site-to-github-pages-with-github-action.html"
+    },
+    "url": "https://ahsanu123.github.io/deploying-marmite-site-to-github-pages-with-github-action.html",
+    "headline": "Deploying Marmite Site To Github Pages With Github Action",
+    "description": "💤 Introduction
+on marmite documentation page, the author already  explain how to
+deploy generated marmite's site into github pages, but the ...",
+    
+    
+    "publisher": {
+        "@type": "Organization",
+        "name": "Ah Blog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://ahsanu123.github.io/"
+        }
+    },
+    "datePublished": "2025-01-26T00:00:00+00:00"
+}
+</script>
+
+
+    <title>Deploying Marmite Site To Github Pages With Github Action | Ah Blog</title>
+    <link rel="stylesheet" type="text/css" href="./static/pico.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/marmite.css">
+    
+    <link rel="stylesheet" type="text/css" href="./static/custom.css">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css" id="highlightjs-theme" />
+
+
+
+    <link rel="alternate" type="application/rss+xml" title="index" href="index.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: howto" href="tag-howto.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: linux" href="tag-linux.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: deployment" href="tag-deployment.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: installation" href="tag-installation.rss">
+    <link rel="alternate" type="application/rss+xml" title="year: 2025" href="archive-2025.rss">
+    
+
+    
+    
+    
+</head>
+<body>
+    
+    <main class="container">
+        
+        <header class="header-content">
+            <nav class="header-nav">
+                <ul class="header-name">
+                    <li>
+                        <hgroup>
+                            <h2><a href="./" class="contrast">Ah Blog</a></h2>
+                             <p>Electronic Engineer</p> 
+                        </hgroup>
+                    </li>
+                </ul>
+                <button id="menu-toggle" class="hamburger">&#9776;</button>
+                
+                <ul class="header-menu" id="header-menu">
+                    
+                      
+                      
+                    <li>
+                        
+                        <a class="menu-item secondary"  href="./about.html">About</a>
+                        
+                    </li>
+                    
+                    <li><span class="theme-toggle secondary" title="dark mode">&#9789;</span></li>
+                    
+                    <div class="underline"></div>
+                </ul>
+            </nav>
+            
+        </header>
+        
+        <section class="main-content">
+            
+
+
+
+<article>
+
+  
+
+
+  
+
+  <div class="content-html"><h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
+<p><a href="https://rochacbruno.github.io/marmite/hosting.html">on marmite documentation page</a>, the author already  explain how to
+deploy generated marmite's site into github pages, but the guide is
+using <code>cargo</code> to install marmite, which mean cargo will compile it
+with github action, its ok, but taking longer than method we will using.</p>
+<h2><a href="#-steps" aria-hidden="true" class="anchor" id="-steps"></a>🐜 Steps</h2>
+<p>this github action file is copied from the jekyll action. basically we will  use
+compiled release from Marmite <a href="https://github.com/rochacbruno/marmite/releases/tag/0.2.3">github repo</a>
+we download it use <code>wget</code>, then extract it with <code>tar</code>, then running to build our site, and done!!.</p>
+<ul>
+<li>first make folder <code>.github/workflows</code> inside your Marmite root folder, <code>mkdir -p .github/workflows</code></li>
+<li>change directory into new created folder, <code>cd .github/workflows</code></li>
+<li>then make yaml file to describe our github action, <code>touch main.yml</code></li>
+<li>open with your favorite text editor(I  will use vim), <code>vim main.yml</code></li>
+<li>paste code below</li>
+</ul>
+<pre><code class="language-yaml">name: Marmite Github Page Deployment Action
+
+on:
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: &quot;pages&quot;
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Download Marmite from Marmite Repos
+        run: wget https://github.com/rochacbruno/marmite/releases/download/0.2.3/marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
+
+      - name: Extract Marmite with tar
+        run: tar -xf marmite-0.2.3-x86_64-unknown-linux-gnu.tar.gz
+
+      - name: Build site 🏗️
+        run: ./marmite . site --debug
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+</code></pre>
+<ul>
+<li>
+<p>as time of writing latest marmite version was <code>0.2.3</code>, feel free to change into latest version if there are available.</p>
+</li>
+<li>
+<p>save <code>main.yml</code> file</p>
+</li>
+<li>
+<p>then push into your remote main branch</p>
+</li>
+<li>
+<p>then check if your command running on action tab inside your github repository.</p>
+</li>
+</ul>
+<h2><a href="#-references" aria-hidden="true" class="anchor" id="-references"></a>🍃 References</h2>
+<ul>
+<li><a href="https://github.com/actions/jekyll-build-pages">Jekyll Github Action</a></li>
+<li><a href="https://rochacbruno.github.io/marmite/hosting.html">Official Marmite Hosting Guide</a></li>
+</ul>
+</div>
+  
+  <footer class="data-tags-footer">
+
+    <div class="content-authors-flex">
+      <div class="content-authors-full">
+        
+
+      </div>
+
+      <div class="date-tags-container">
+        <div class="content-date">
+          
+
+
+<span class="content-date">
+    <small> Jan 26, 2025 - &#10710; 3 min</small>
+</span>
+
+        </div>
+
+        <ul class="content-tags">
+          
+          <li><a href="./tag-linux.html">linux</a></li>
+          
+          <li><a href="./tag-howto.html">howto</a></li>
+          
+          <li><a href="./tag-deployment.html">deployment</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+</article>
+
+
+
+
+  
+  
+  
+  
+  <article>
+    Related linux content
+    <ul>
+      
+      
+      
+      
+      <li><a href="./archlinux-wayland-installation-on-raspberry-pi-zero-2.html">archlinux wayland installation on raspberry pi zero 2</a></li>
+      
+    </ul>
+  </article>
+  
+
+
+
+
+
+        </section>
+        
+        <footer class="footer-content grid">
+            <div>Powered by <a href="https://github.com/rochacbruno/marmite">Marmite</a> | <small><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY_NC-SA</a></small></div>
+            
+        </footer>
+        
+    </main>
+
+    <script src="./static/marmite.js"></script>
+    <script src="./static/custom.js"></script>
+    
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script>
+
+
+
+</body>
+</html>
