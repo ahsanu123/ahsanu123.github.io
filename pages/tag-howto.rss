@@ -1,4 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Sun, 26 Jan 2025 02:43:48 GMT</lastBuildDate><generator>marmite</generator><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Thu, 30 Jan 2025 09:56:17 GMT</lastBuildDate><generator>marmite</generator><item><title>Passing Object From .ASCX in ASPNET Webform.</title><link>https://ahsanu123.github.io//passing-object-from-ascx-in-aspnet-webform.html</link><category>linux</category><category>howto</category><category>ASPNET</category><category>legacy</category><guid>https://ahsanu123.github.io//passing-object-from-ascx-in-aspnet-webform.html</guid><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<blockquote>
+<p><strong>copied from DeepSeek Answer</strong></p>
+</blockquote>
+<h1><a href="#steps-to-pass-an-object-from-ascx-file" aria-hidden="true" class="anchor" id="steps-to-pass-an-object-from-ascx-file"></a>Steps to Pass an Object from .ascx File</h1>
+<h3><a href="#1-define-a-public-property-in-the-user-control" aria-hidden="true" class="anchor" id="1-define-a-public-property-in-the-user-control"></a>1. Define a Public Property in the User Control</h3>
+<p>In the code-behind file of your User Control (e.g., MyUserControl.ascx.cs), define a public property that will hold the object.</p>
+<pre><code class="language-c#">public partial class MyUserControl : System.Web.UI.UserControl
+{
+    // Public property to hold the object
+    public MyCustomObject MyObject { get; set; }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (MyObject != null)
+        {
+            // Use the object in your logic
+            Label1.Text = MyObject.SomeProperty;
+        }
+    }
+}
+</code></pre>
+<h3><a href="#2-define-the-object-in-the-parent-page" aria-hidden="true" class="anchor" id="2-define-the-object-in-the-parent-page"></a>2. Define the Object in the Parent Page</h3>
+<p>In the parent page (e.g., Default.aspx), you can declare the object and pass it to the User Control declaratively.</p>
+<p>Example of MyCustomObject Class:</p>
+<pre><code class="language-c#">public class MyCustomObject
+{
+    public string SomeProperty { get; set; }
+}
+</code></pre>
+<h3><a href="#3-pass-the-object-declaratively-in-ascx" aria-hidden="true" class="anchor" id="3-pass-the-object-declaratively-in-ascx"></a>3. Pass the Object Declaratively in .ascx</h3>
+<p>In the .aspx file where you use the User Control, you can set the property declaratively. However, since you cannot directly declare an object in the markup, you can use a static method or a factory method to create the object and assign it to the property.</p>
+<p>Example:</p>
+<pre><code class="language-html">&lt;%@ Page Language=&quot;C#&quot; AutoEventWireup=&quot;true&quot; CodeBehind=&quot;Default.aspx.cs&quot; Inherits=&quot;WebApplication1.Default&quot; %&gt;
+&lt;%@ Register Src=&quot;~/MyUserControl.ascx&quot; TagName=&quot;MyUserControl&quot; TagPrefix=&quot;uc1&quot; %&gt;
+&lt;%@ Import Namespace=&quot;WebApplication1&quot; %&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head runat=&quot;server&quot;&gt;
+    &lt;title&gt;Pass Object to User Control&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot; runat=&quot;server&quot;&gt;
+        &lt;div&gt;
+            &lt;uc1:MyUserControl ID=&quot;MyUserControl1&quot; runat=&quot;server&quot; 
+                MyObject='&lt;%# new MyCustomObject { SomeProperty = &quot;Hello from .ascx!&quot; } %&gt;' /&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3><a href="#4-bind-the-property-using-data-binding" aria-hidden="true" class="anchor" id="4-bind-the-property-using-data-binding"></a>4. Bind the Property Using Data Binding</h3>
+<p>In the example above, the MyObject property is set using &lt;%# %&gt; data binding syntax. To ensure the binding is evaluated, you need to call the DataBind() method in the Page_Load event of the parent page.</p>
+<p>Parent Page Code-Behind (Default.aspx.cs):</p>
+<pre><code class="language-c#">protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+        // Ensure data binding is evaluated
+        DataBind();
+    }
+}
+</code></pre>
+<p>Explanation of the Code</p>
+<p>Public Property: The MyObject property is defined in the User Control's code-behind.</p>
+<p>Declarative Assignment: The MyObject property is set in the .aspx file using &lt;%# %&gt; data binding syntax.</p>
+<p>Data Binding: The DataBind() method is called in the parent page's Page_Load event to ensure the data binding expression is evaluated.</p>
+<p>Alternative: Use a Static Method
+If you want to avoid data binding, you can use a static method to create the object and assign it to the property.</p>
+<p>Static Method Example:</p>
+<pre><code class="language-c#">public static class ObjectFactory
+{
+    public static MyCustomObject CreateObject()
+    {
+        return new MyCustomObject { SomeProperty = &quot;Hello from Static Method!&quot; };
+    }
+}
+</code></pre>
+<p>In .aspx File:</p>
+<pre><code class="language-html">&lt;uc1:MyUserControl ID=&quot;MyUserControl1&quot; runat=&quot;server&quot; 
+    MyObject='&lt;%= ObjectFactory.CreateObject() %&gt;' /&gt;
+</code></pre>
+<h3><a href="#key-points" aria-hidden="true" class="anchor" id="key-points"></a>Key Points</h3>
+<ul>
+<li>
+<p>You cannot directly declare an object in the .aspx or .ascx markup. Instead, you use data binding (&lt;%# %&gt;) or static methods (&lt;%= %&gt;) to create and assign the object.</p>
+</li>
+<li>
+<p>Ensure you call DataBind() in the parent page if you use data binding (&lt;%# %&gt;).</p>
+</li>
+<li>
+<p>This approach works for User Controls and can be adapted for Custom Server Controls as well.</p>
+</li>
+</ul>
+<p>If you have further questions or need clarification, feel free to ask! 😊</p>
+]]></content:encoded></item><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
 <p><a href="https://rochacbruno.github.io/marmite/hosting.html">on marmite documentation page</a>, the author already  explain how to
 deploy generated marmite's site into github pages, but the guide is
 using <code>cargo</code> to install marmite, which mean cargo will compile it
