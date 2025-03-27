@@ -93,6 +93,14 @@ umount boot root
   - first generate config with `wpa_passphrase <your-wifi-name> <your-wifi-password> > homenetwork.conf`, ex: `wpa_passphrase homenetwork 1234567890 > homenetwork.conf`
   - then try to connect with `wpa_supplicant -i wlan0 -c homenetwork.conf`, `-i` is for interface (might be different, mine is **wlan0**), and `-c` is for config.
   - try to ping `ping 1.1.1.1`, make sure you got a response
+
+- if `wpa_supplicant` and `wpa_passphrase` not working, try to use `netctl` by
+  - set wlan0 (or your device down) -> `sudo ip link wlan0 down`
+  - then create/or copy `netctl` config by copying from `/etc/netctl/examples`, change SSID and password based on your need 
+  - then run `netctl stop-all` to stop all services of netctl
+  - finally run your config by `netctl start yourConfigName`, hopefully its connect 
+  - now try to ping `ping 1.1.1.1`, make sure you got a response
+
 - Initialize the pacman keyring and populate the Arch Linux ARM package signing keys:
 ```shell
 pacman-key --init
@@ -108,7 +116,7 @@ pacman-key --populate archlinuxarm
   - run `visudo`, then uncomment `%wheel ALL=(ALL:ALL) ALL`, its about line 125
   - type `:wq` then enter, to save and exit
 
-- next copy sway config into home `.config` directory, `cd ~ && cp /etc/sway/config .`
+- next copy sway config into home `~/.config/sway/` directory, `cd ~ && cp /etc/sway/config ~/.config/sway`
 - next change default terminal to use alacritty, `vim ~/.config/sway/config`
   - change `$term` variable to alacritty, from `set $term foot` to `set $term alacritty`
   - save and exit, type `:wq` then enter
