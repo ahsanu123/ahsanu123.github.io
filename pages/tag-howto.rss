@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ah Blog</title><link>https://ahsanu123.github.io/</link><description>Electronic Engineer</description><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><lastBuildDate>Thu, 30 Jan 2025 09:56:17 GMT</lastBuildDate><generator>marmite</generator><item><title>Passing Object From .ASCX in ASPNET Webform.</title><link>https://ahsanu123.github.io//passing-object-from-ascx-in-aspnet-webform.html</link><category>linux</category><category>howto</category><category>ASPNET</category><category>legacy</category><guid>https://ahsanu123.github.io//passing-object-from-ascx-in-aspnet-webform.html</guid><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link></link><description></description><pubDate>Thu, 27 Mar 2025 00:00:00 GMT</pubDate><lastBuildDate>Fri, 28 Mar 2025 04:04:44 GMT</lastBuildDate><generator>marmite</generator><item><title>Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</title><link>/cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</link><category>linux</category><category>howto</category><category>tauri</category><guid>/cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</guid><pubDate>Thu, 27 Mar 2025 00:00:00 GMT</pubDate><source url="">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w" aria-hidden="true" class="anchor" id="-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w"></a>🍄 Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</h1>
+<blockquote>
+<p>Its just quick note about setup and cross compile tauri for archlinuxarm architecture in docker</p>
+</blockquote>
+<p>first you need Docker installed on your system</p>
+<pre><code class="language-shell">$ docker --version
+Docker version 28.0.1, build 068a01ea94  
+</code></pre>
+<ul>
+<li>download Archlinuxarm image with <code>wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz</code></li>
+<li>next create folder to extract it <code>mkdir archlinuxarm</code></li>
+<li>extract to <code>archlinuxarm</code> by <code>tar -xpf ArchLinuxARM-rpi-armv7-latest.tar.gz -C archlinuxarm</code></li>
+<li>then change directory with <code>cd archlinuxarm</code></li>
+<li>now we will import extracted file to docker with <code>tar -cpf - . | docker import - archlinuxarm:latest</code></li>
+<li>then run with, <code>docker run -it --rm archlinuxarm:latest /bin/bash </code>, it will run bash with interactive shell <code>--rm</code> will remove all data after you logout from shell</li>
+<li>if error when docker run, try to add qemu -&gt; <code>docker run --rm --privileged multiarch/qemu-user-static --reset -p yes</code></li>
+<li>init pacman key with <code>pacman-key --init</code></li>
+<li>then <code>pacman-key --populate archlinuxarm</code></li>
+<li>finally update all package with <code>pacman -Syu</code></li>
+<li>next we will install required package to cross compile <code>sudo  pacman  -S  --needed   webkit2gtk-4.1   base-devel  curl   wget   file   openssl   appmenu-gtk-module   libappindicator-gtk3  librsvg yarn</code></li>
+<li>install rust and rustup <code>pacman -S rustup</code></li>
+<li>then install default toolchain for current architecture with <code>rustup default stable</code></li>
+<li>we need node js to compile our frontend, <code>pacman -S nodejs</code></li>
+<li>you need postgresql libs if you work with postgresql in rust, <code>pacman -S postgresql-libs</code></li>
+<li>to save docker run -&gt; docker ps &amp;&amp; docker commit &lt;container_id_or_name&gt; my-custom-image</li>
+<li>to copy from docker container use <code> docker cp tauri-container:/root/ams/app/src-tauri/target/release/bundle/deb/ams_0.1.0_armel.deb .</code></li>
+<li>to run docker with name use <code> docker run -it --rm --name tauri-container archlinuxarm:latest  /bin/bash</code></li>
+</ul>
+]]></content:encoded></item><item><title>🍼 Passing Object From .ASCX in ASPNET Webform.</title><link>/passing-object-from-ascx-in-aspnet-webform.html</link><category>linux</category><category>howto</category><category>ASPNET</category><category>legacy</category><guid>/passing-object-from-ascx-in-aspnet-webform.html</guid><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><source url="">tag-howto</source><content:encoded><![CDATA[<blockquote>
 <p><strong>copied from DeepSeek Answer</strong></p>
 </blockquote>
 <h1><a href="#steps-to-pass-an-object-from-ascx-file" aria-hidden="true" class="anchor" id="steps-to-pass-an-object-from-ascx-file"></a>Steps to Pass an Object from .ascx File</h1>
@@ -93,7 +121,7 @@ If you want to avoid data binding, you can use a static method to create the obj
 </li>
 </ul>
 <p>If you have further questions or need clarification, feel free to ask! 😊</p>
-]]></content:encoded></item><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>https://ahsanu123.github.io//deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
+]]></content:encoded></item><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>/deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>/deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
 <p><a href="https://rochacbruno.github.io/marmite/hosting.html">on marmite documentation page</a>, the author already  explain how to
 deploy generated marmite's site into github pages, but the guide is
 using <code>cargo</code> to install marmite, which mean cargo will compile it
@@ -182,7 +210,7 @@ jobs:
 <li><a href="https://github.com/actions/jekyll-build-pages">Jekyll Github Action</a></li>
 <li><a href="https://rochacbruno.github.io/marmite/hosting.html">Official Marmite Hosting Guide</a></li>
 </ul>
-]]></content:encoded></item><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>https://ahsanu123.github.io//archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="https://ahsanu123.github.io/">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
+]]></content:encoded></item><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>/archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>/archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="">tag-howto</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
 <p><a href="#installation-step">(skip intro if you want, its not important)</a></p>
 <p>I have a raspberry pi zero 2 w (let's call it zero 2 after this),
 but I never use it, recently I got a plan to run a local web app on my pi zero 2,
@@ -282,6 +310,16 @@ sync
 </ul>
 </li>
 <li>
+<p>if <code>wpa_supplicant</code> and <code>wpa_passphrase</code> not working, try to use <code>netctl</code> by</p>
+<ul>
+<li>set wlan0 (or your device down) -&gt; <code>sudo ip link wlan0 down</code></li>
+<li>then create/or copy <code>netctl</code> config by copying from <code>/etc/netctl/examples</code>, change SSID and password based on your need</li>
+<li>then run <code>netctl stop-all</code> to stop all services of netctl</li>
+<li>finally run your config by <code>netctl start yourConfigName</code>, hopefully its connect</li>
+<li>now try to ping <code>ping 1.1.1.1</code>, make sure you got a response</li>
+</ul>
+</li>
+<li>
 <p>Initialize the pacman keyring and populate the Arch Linux ARM package signing keys:</p>
 </li>
 </ul>
@@ -305,7 +343,7 @@ pacman-key --populate archlinuxarm
 </ul>
 </li>
 <li>
-<p>next copy sway config into home <code>.config</code> directory, <code>cd ~ &amp;&amp; cp /etc/sway/config .</code></p>
+<p>next copy sway config into home <code>~/.config/sway/</code> directory, <code>cd ~ &amp;&amp; cp /etc/sway/config ~/.config/sway</code></p>
 </li>
 <li>
 <p>next change default terminal to use alacritty, <code>vim ~/.config/sway/config</code></p>
