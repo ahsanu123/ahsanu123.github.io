@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <meta name="generator" content="Marmite" />
+    
+<meta property="og:title" content="⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform">
+
+<meta property="og:description" content="
+
+ok first you need android cmdline tools link, but mostly i use arch linux, and aur have this in li...">
+
+<meta property="og:image" content="https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Home">
+
+<meta property="article:published_time" content=" 2025-04-04T00:00:00+00:00">
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/android-development-setup-without-android-studio-in-kotlin-multiplatform.html"
+    },
+    "url": "/android-development-setup-without-android-studio-in-kotlin-multiplatform.html",
+    "headline": "⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform",
+    "description": "ok first you need android cmdline tools link, but mostly i use arch linux, and aur have this in link, so run  yay -S android-sdk-cmdline-too...",
+    "image": "https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0",
+    
+    "publisher": {
+        "@type": "Organization",
+        "name": "Home",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/"
+        }
+    },
+    "datePublished": "2025-04-04T00:00:00+00:00"
+}
+</script>
+
+
+    <title>⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform | Home</title>
+    <link rel="stylesheet" type="text/css" href="./static/pico.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/marmite.css">
+    
+    <link rel="stylesheet" type="text/css" href="./static/custom.css">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css" id="highlightjs-theme" />
+
+
+
+    <link rel="alternate" type="application/rss+xml" title="index" href="index.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: linux" href="tag-linux.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: howto" href="tag-howto.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: tauri" href="tag-tauri.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: deployment" href="tag-deployment.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: setup" href="tag-setup.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: android" href="tag-android.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: kotlin multiplatform" href="tag-kotlin-multiplatform.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: kotlin" href="tag-kotlin.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: installation" href="tag-installation.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: ASPNET" href="tag-aspnet.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: legacy" href="tag-legacy.rss">
+    <link rel="alternate" type="application/rss+xml" title="year: 2025" href="archive-2025.rss">
+    
+
+    
+    
+    
+</head>
+<body>
+    
+    <main class="container">
+        
+        <header class="header-content">
+            <nav class="header-nav">
+                <ul class="header-name">
+                    <li>
+                        <hgroup>
+                            <h2><a href="./" class="contrast">Home</a></h2>
+                            
+                        </hgroup>
+                    </li>
+                </ul>
+                <button id="menu-toggle" class="hamburger">&#9776;</button>
+                
+                <ul class="header-menu" id="header-menu">
+                    
+                      
+                      
+                    <li>
+                        
+                        <a class="menu-item secondary"  href="./tags.html">Tags</a>
+                        
+                    </li>
+                    
+                      
+                      
+                    <li>
+                        
+                        <a class="menu-item secondary"  href="./archive.html">Archive</a>
+                        
+                    </li>
+                    
+                      
+                      
+                    <li>
+                        
+                        <a class="menu-item secondary"  href="./authors.html">Authors</a>
+                        
+                    </li>
+                    
+                    <li><span class="theme-toggle secondary" title="dark mode">&#9789;</span></li>
+                    
+                    <div class="underline"></div>
+                </ul>
+            </nav>
+            
+        </header>
+        
+        <section class="main-content">
+            
+
+
+
+<article>
+
+  
+
+
+<div class="content-title" id="title">
+    <h1>⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</h1> 
+    
+
+
+<span class="content-date">
+    <small> Apr  4, 2025 - &#10710; 3 min</small>
+</span>
+
+</div>
+
+  
+
+  <div class="content-html"><p><figure><img src="https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0" alt="banner" /></figure></p>
+<ul>
+<li>ok first you need android cmdline tools <a href="https://developer.android.com/tools">link</a>, but mostly i use arch linux, and aur have this in <a href="https://aur.archlinux.org/packages/android-sdk-cmdline-tools-latest">link</a>, so run <code> yay -S android-sdk-cmdline-tools-latest --noconfirm</code></li>
+<li>but if you not in linux environment you need download cmdline-tools and extract it somewhere, make sure to export cmdline-tools folder to your environment</li>
+</ul>
+<blockquote>
+<p>Set environment variables <a href="https://developer.android.com/tools#environment-variables">quote</a>
+We recommend setting the environment variable for  <a href="https://developer.android.com/studio/command-line/variables#envar"><code>ANDROID_HOME</code></a>  when using the command line. Also, set your command search path to include  <code>ANDROID_HOME/tools</code>,  <code>ANDROID_HOME/tools/bin</code>, and  <code>ANDROID_HOME/platform-tools</code>  to find the most common tools. The steps vary depending on your OS, but read  <a href="https://developer.android.com/studio/command-line/variables#set">How to set environment variables</a>  for general guidance.</p>
+</blockquote>
+<ul>
+<li>after finish install of cmd-line tools add its path to your environment with <code>export PATH=&quot;$PATH:/opt/android-sdk/cmdline-tools/latest/bin&quot;</code></li>
+<li>set your android sdk root with <code>export ANDROID_HOME=/opt/android-sdk</code></li>
+<li>now you get</li>
+</ul>
+<pre><code class="language-shell">ls /opt/android-sdk/cmdline-tools/latest/bin
+apkanalyzer  d8    profgen  resourceshrinker  screenshot2
+avdmanager   lint  r8       retrace           sdkmanager
+</code></pre>
+<ul>
+<li>first we will use <code>sdkmanager</code> to update our sdk with <code>sdkmanager --update</code></li>
+<li>next install minimal development  tool with (choose version based on your need, use <code>sdkmanager --list</code> to get all available package and its version)</li>
+</ul>
+<pre><code class="language-shell">sdkmanager &quot;platform-tools&quot; \
+           &quot;build-tools;34.0.0&quot; \
+           &quot;platforms;android-34&quot; \
+           &quot;system-images;android-34;google_apis;x86_64&quot;
+</code></pre>
+<ul>
+<li>when you run previous command you will ask about license, just type <code>y</code>, and make sure you have permission to your <code>ANDROID_HOME</code> , if not add permision with</li>
+</ul>
+<pre><code class="language-shell">sudo chown -R $USER:$USER $ANDROID_HOME
+sudo chmod -R 775 $ANDROID_HOME
+</code></pre>
+<ul>
+<li>you can list installed package in <code>/opt/android-sdk</code></li>
+<li>dont forget to add installed package to your path</li>
+</ul>
+<pre><code class="language-shell">export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/34.0.0:$PATH
+</code></pre>
+<ul>
+<li>finally install gradle, <code>sudo pacman -S gradle --noconfirm</code></li>
+<li>you can create profile of all exported path with (note: I use ZSH)</li>
+</ul>
+<pre><code class="language-shell">// add this to your shell profile (mine is .zshrc)
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$ANDROID_HOME/build-tools/34.0.0/:$PATH
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin/:$PATH
+export PATH=$ANDROID_HOME/emulator/:$PATH
+export PATH=$ANDROID_HOME/platform-tools/:$PATH
+</code></pre>
+<h3><a href="#create-android-project-with-gradle" aria-hidden="true" class="anchor" id="create-android-project-with-gradle"></a>Create Android Project with gradle</h3>
+<p>to create new application we can use kotlin multiplatform wizard</p>
+<ul>
+<li>we will use kotlin multiplatform wizard, <a href="https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-create-first-app.html#create-the-project-with-a-wizard">link</a></li>
+<li>choose your app name and click download</li>
+<li>unzip to your project root folder</li>
+<li>next run <code>./gradlew</code> to download all needed dependencies</li>
+<li>ok, we will test our project by build debug app then run it on real android device</li>
+<li>first we need to enable developer mode of our android device (step to activate android phone dev mode is different, so search for your phone)</li>
+<li>in android developer mode, choose <code>wireless debugging</code> and enable it</li>
+<li>make sure your android device is connected to same network with your computer</li>
+<li>in wireless debugging you will find your ip adress and your port</li>
+<li>we will use <code>adb</code> to connect into your phone with pair code, click on <code>pair deevice with pairing code</code> on your phone, you will give by needed information,</li>
+<li>run <code>adb pair &lt;ip:port&gt; &lt;pair-code&gt;</code> ex: <code>adb pair 192.168.1.10:41245 316836</code></li>
+</ul>
+<pre><code class="language-shell">// example of successfull pair 
+$ adb pair 192.168.1.10:43423 218265
+Successfully paired to 192.168.1.10:43423 [guid=adb-1027525355008516-aqgzTQ]
+</code></pre>
+<ul>
+<li>after pairing, you need to connect into device with <code>adb connect &lt;ip:port&gt;</code>, with this we can automatically install our app to connected android devices.</li>
+</ul>
+<pre><code class="language-shell">// example of successfull connect
+$ adb connect 192.168.1.10:34771
+connected to 192.168.1.10:34771
+</code></pre>
+<ul>
+<li>next list your device with <code>adb devices</code></li>
+</ul>
+<pre><code class="language-shell">$ adb devices
+List of devices attached
+192.168.1.10:34771      device
+</code></pre>
+<ul>
+<li>you can list all gradlew task with <code>./gradlew tasks</code></li>
+<li>to build and install debug app to your phone run <code>./gradlew assembleDebug</code></li>
+<li>then install it with <code>./gradlew installDebug</code></li>
+<li>if previous command success you will find new app in your phone (name will same as your project name)</li>
+<li>there also continuous mode, to re install if some file was changed <code>./gradlew installDebug --continuous</code></li>
+</ul>
+</div>
+  
+  <footer class="data-tags-footer">
+
+    <div class="content-authors-flex">
+      <div class="content-authors-full">
+        
+
+      </div>
+
+      <div class="date-tags-container">
+        <div class="content-date">
+          
+
+
+<span class="content-date">
+    <small> Apr  4, 2025 - &#10710; 3 min</small>
+</span>
+
+        </div>
+
+        <ul class="content-tags">
+          
+          <li><a href="./tag-linux.html">linux</a></li>
+          
+          <li><a href="./tag-setup.html">setup</a></li>
+          
+          <li><a href="./tag-android.html">android</a></li>
+          
+          <li><a href="./tag-kotlin.html">kotlin</a></li>
+          
+          <li><a href="./tag-kotlin-multiplatform.html">kotlin multiplatform</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+</article>
+
+
+
+
+  
+  
+  
+  
+  <article>
+    Related linux content
+    <ul>
+      
+      
+      
+      
+      <li><a href="./cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html">Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</a></li>
+      
+      
+      <li><a href="./passing-object-from-ascx-in-aspnet-webform.html">🍼 Passing Object From .ASCX in ASPNET Webform.</a></li>
+      
+      
+      <li><a href="./deploying-marmite-site-to-github-pages-with-github-action.html">Deploying Marmite Site To Github Pages With Github Action</a></li>
+      
+      
+      <li><a href="./archlinux-wayland-installation-on-raspberry-pi-zero-2.html">archlinux wayland installation on raspberry pi zero 2</a></li>
+      
+    </ul>
+  </article>
+  
+
+
+
+
+
+        </section>
+        
+        <footer class="footer-content grid">
+            <div>Powered by <a href="https://github.com/rochacbruno/marmite">Marmite</a> | <small><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC-BY_NC-SA</a></small></div>
+            
+        </footer>
+        
+    </main>
+
+    <script src="./static/marmite.js"></script>
+    <script src="./static/custom.js"></script>
+    
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+<script>
+  hljs.highlightAll();
+</script>
+
+
+
+</body>
+</html>

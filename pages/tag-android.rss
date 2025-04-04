@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link></link><description></description><pubDate>Fri, 04 Apr 2025 00:00:00 GMT</pubDate><lastBuildDate>Fri, 04 Apr 2025 16:32:42 GMT</lastBuildDate><generator>marmite</generator><item><title>⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</title><link>/android-development-setup-without-android-studio-in-kotlin-multiplatform.html</link><category>linux</category><category>setup</category><category>android</category><category>kotlin</category><category>kotlin multiplatform</category><guid>/android-development-setup-without-android-studio-in-kotlin-multiplatform.html</guid><pubDate>Fri, 04 Apr 2025 00:00:00 GMT</pubDate><source url="">tag-android</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0" alt="banner" /></figure></p>
+<ul>
+<li>ok first you need android cmdline tools <a href="https://developer.android.com/tools">link</a>, but mostly i use arch linux, and aur have this in <a href="https://aur.archlinux.org/packages/android-sdk-cmdline-tools-latest">link</a>, so run <code> yay -S android-sdk-cmdline-tools-latest --noconfirm</code></li>
+<li>but if you not in linux environment you need download cmdline-tools and extract it somewhere, make sure to export cmdline-tools folder to your environment</li>
+</ul>
+<blockquote>
+<p>Set environment variables <a href="https://developer.android.com/tools#environment-variables">quote</a>
+We recommend setting the environment variable for  <a href="https://developer.android.com/studio/command-line/variables#envar"><code>ANDROID_HOME</code></a>  when using the command line. Also, set your command search path to include  <code>ANDROID_HOME/tools</code>,  <code>ANDROID_HOME/tools/bin</code>, and  <code>ANDROID_HOME/platform-tools</code>  to find the most common tools. The steps vary depending on your OS, but read  <a href="https://developer.android.com/studio/command-line/variables#set">How to set environment variables</a>  for general guidance.</p>
+</blockquote>
+<ul>
+<li>after finish install of cmd-line tools add its path to your environment with <code>export PATH=&quot;$PATH:/opt/android-sdk/cmdline-tools/latest/bin&quot;</code></li>
+<li>set your android sdk root with <code>export ANDROID_HOME=/opt/android-sdk</code></li>
+<li>now you get</li>
+</ul>
+<pre><code class="language-shell">ls /opt/android-sdk/cmdline-tools/latest/bin
+apkanalyzer  d8    profgen  resourceshrinker  screenshot2
+avdmanager   lint  r8       retrace           sdkmanager
+</code></pre>
+<ul>
+<li>first we will use <code>sdkmanager</code> to update our sdk with <code>sdkmanager --update</code></li>
+<li>next install minimal development  tool with (choose version based on your need, use <code>sdkmanager --list</code> to get all available package and its version)</li>
+</ul>
+<pre><code class="language-shell">sdkmanager &quot;platform-tools&quot; \
+           &quot;build-tools;34.0.0&quot; \
+           &quot;platforms;android-34&quot; \
+           &quot;system-images;android-34;google_apis;x86_64&quot;
+</code></pre>
+<ul>
+<li>when you run previous command you will ask about license, just type <code>y</code>, and make sure you have permission to your <code>ANDROID_HOME</code> , if not add permision with</li>
+</ul>
+<pre><code class="language-shell">sudo chown -R $USER:$USER $ANDROID_HOME
+sudo chmod -R 775 $ANDROID_HOME
+</code></pre>
+<ul>
+<li>you can list installed package in <code>/opt/android-sdk</code></li>
+<li>dont forget to add installed package to your path</li>
+</ul>
+<pre><code class="language-shell">export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/34.0.0:$PATH
+</code></pre>
+<ul>
+<li>finally install gradle, <code>sudo pacman -S gradle --noconfirm</code></li>
+<li>you can create profile of all exported path with (note: I use ZSH)</li>
+</ul>
+<pre><code class="language-shell">// add this to your shell profile (mine is .zshrc)
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$ANDROID_HOME/build-tools/34.0.0/:$PATH
+export PATH=$ANDROID_HOME/cmdline-tools/latest/bin/:$PATH
+export PATH=$ANDROID_HOME/emulator/:$PATH
+export PATH=$ANDROID_HOME/platform-tools/:$PATH
+</code></pre>
+<h3><a href="#create-android-project-with-gradle" aria-hidden="true" class="anchor" id="create-android-project-with-gradle"></a>Create Android Project with gradle</h3>
+<p>to create new application we can use kotlin multiplatform wizard</p>
+<ul>
+<li>we will use kotlin multiplatform wizard, <a href="https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-create-first-app.html#create-the-project-with-a-wizard">link</a></li>
+<li>choose your app name and click download</li>
+<li>unzip to your project root folder</li>
+<li>next run <code>./gradlew</code> to download all needed dependencies</li>
+<li>ok, we will test our project by build debug app then run it on real android device</li>
+<li>first we need to enable developer mode of our android device (step to activate android phone dev mode is different, so search for your phone)</li>
+<li>in android developer mode, choose <code>wireless debugging</code> and enable it</li>
+<li>make sure your android device is connected to same network with your computer</li>
+<li>in wireless debugging you will find your ip adress and your port</li>
+<li>we will use <code>adb</code> to connect into your phone with pair code, click on <code>pair deevice with pairing code</code> on your phone, you will give by needed information,</li>
+<li>run <code>adb pair &lt;ip:port&gt; &lt;pair-code&gt;</code> ex: <code>adb pair 192.168.1.10:41245 316836</code></li>
+</ul>
+<pre><code class="language-shell">// example of successfull pair 
+$ adb pair 192.168.1.10:43423 218265
+Successfully paired to 192.168.1.10:43423 [guid=adb-1027525355008516-aqgzTQ]
+</code></pre>
+<ul>
+<li>after pairing, you need to connect into device with <code>adb connect &lt;ip:port&gt;</code>, with this we can automatically install our app to connected android devices.</li>
+</ul>
+<pre><code class="language-shell">// example of successfull connect
+$ adb connect 192.168.1.10:34771
+connected to 192.168.1.10:34771
+</code></pre>
+<ul>
+<li>next list your device with <code>adb devices</code></li>
+</ul>
+<pre><code class="language-shell">$ adb devices
+List of devices attached
+192.168.1.10:34771      device
+</code></pre>
+<ul>
+<li>you can list all gradlew task with <code>./gradlew tasks</code></li>
+<li>to build and install debug app to your phone run <code>./gradlew assembleDebug</code></li>
+<li>then install it with <code>./gradlew installDebug</code></li>
+<li>if previous command success you will find new app in your phone (name will same as your project name)</li>
+<li>there also continuous mode, to re install if some file was changed <code>./gradlew installDebug --continuous</code></li>
+</ul>
+]]></content:encoded></item></channel></rss>
