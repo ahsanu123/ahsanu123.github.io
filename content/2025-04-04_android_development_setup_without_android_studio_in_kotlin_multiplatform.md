@@ -85,3 +85,9 @@ List of devices attached
 - then install it with `./gradlew installDebug`
 - if previous command success you will find new app in your phone (name will same as your project name)
 - there also continuous mode, to re install if some file was changed `./gradlew installDebug --continuous`
+
+### Additional Note 
+
+- make sure to install kotlin in your system (i use neovim with lsp server, and kotlin lsp server need kotlin compiler), you can use sdkman (https://sdkman.io/install/) to install kotlin.
+- if lsp still fail to resolve `androidx` import, make sure you add `implementation(libs.androidx.core.ktx)` in `build.gradle.kts` inside `androidMain.dependencies`
+
