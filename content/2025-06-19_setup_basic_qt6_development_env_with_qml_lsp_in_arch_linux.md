@@ -1,7 +1,7 @@
 ---
 date: 2025-06-19
 title: Setup Basic Qt6 Development Environment with QML LSP in Arch Linux
-tags: qt6, qml, arch-linux, qt6-lsp, qml-language-server, qt6-setup, neovim, lazyvim, qt6-qml, linux-development, cplusplus, lsp, nvim, qt-tutorial, embedded-linux
+tags: qt6, qml, linux, arch-linux
 ---
 
 ![image](https://github.com/user-attachments/assets/f66edddb-fb2f-49e4-8ef5-f017d03f9410)
@@ -57,3 +57,8 @@ extra/qt6-translations 6.9.1-1 (qt6) [installed]
 - then hopefully lsp will work :)
 
 ![image](https://github.com/user-attachments/assets/6059c854-a685-4bde-bf8c-45b85a6c7f52)
+
+
+## Reference 
+
+- [nvim-lspconfig qmlls](https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/qmlls.lua)
