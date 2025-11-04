@@ -2,22 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark" />
     <meta name="generator" content="Marmite" />
     
 <meta property="og:title" content="Setup Julia in Neovim">
 
-<meta property="og:description" content="🔬 Setup Julia in Neovim
+<meta property="og:description" content="
+🔬 Setup Julia in Neovim
 
 short guide about setup Julia
 
-This Week I try to setup Julia Development i...">
+This Week I try to setup Julia Development ...">
 
+<meta property="og:image" content="https://github.com/user-attachments/assets/3905b050-fb44-4c8f-bef6-4d85c808ebcd">
+
+<meta property="og:image" content="https://github.com/user-attachments/assets/3905b050-fb44-4c8f-bef6-4d85c808ebcd">
+
+
+<meta property="og:url" content="https://ahsanu123.github.io/setup-julia-in-neovim.html">
 
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Home">
+<meta property="og:site_name" content="Ah Blog">
 
 <meta property="article:published_time" content=" 2025-06-01T00:00:00+00:00">
 
@@ -29,23 +36,23 @@ This Week I try to setup Julia Development i...">
     "@type": "BlogPosting",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "/setup-julia-in-neovim.html"
+        "@id": "https://ahsanu123.github.io/setup-julia-in-neovim.html"
     },
-    "url": "/setup-julia-in-neovim.html",
+    "url": "https://ahsanu123.github.io/setup-julia-in-neovim.html",
     "headline": "Setup Julia in Neovim",
     "description": "🔬 Setup Julia in Neovim
 
 short guide about setup Julia
 
 This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim (re...",
-    
+    "image": "https://github.com/user-attachments/assets/3905b050-fb44-4c8f-bef6-4d85c808ebcd",
     
     "publisher": {
         "@type": "Organization",
-        "name": "Home",
+        "name": "Ah Blog",
         "logo": {
             "@type": "ImageObject",
-            "url": "/"
+            "url": "https://ahsanu123.github.io/"
         }
     },
     "datePublished": "2025-06-01T00:00:00+00:00"
@@ -54,32 +61,37 @@ This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim
 
 
     <title>Setup Julia in Neovim | Home</title>
-    <link rel="stylesheet" type="text/css" href="./static/pico.min.css">
-    <link rel="stylesheet" type="text/css" href="./static/marmite.css">
+    <link rel="stylesheet" type="text/css" href="/static/pico.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/marmite.css">
     
-    <link rel="stylesheet" type="text/css" href="./static/custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/custom.css">
     
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css" id="highlightjs-theme" />
 
 
 
-    <link rel="alternate" type="application/rss+xml" title="index" href="index.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: linux" href="tag-linux.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: howto" href="tag-howto.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: setup" href="tag-setup.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: kotlin" href="tag-kotlin.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: ASPNET" href="tag-aspnet.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: julia" href="tag-julia.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: android" href="tag-android.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: tauri" href="tag-tauri.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: installation" href="tag-installation.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: legacy" href="tag-legacy.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: kotlin multiplatform" href="tag-kotlin-multiplatform.rss">
-    <link rel="alternate" type="application/rss+xml" title="tag: deployment" href="tag-deployment.rss">
-    <link rel="alternate" type="application/rss+xml" title="year: 2025" href="archive-2025.rss">
+        <link rel="alternate" type="application/rss+xml" title="index" href="/index.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: linux" href="/tag-linux.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: howto" href="/tag-howto.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: setup" href="/tag-setup.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: kotlin multiplatform" href="/tag-kotlin-multiplatform.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: legacy" href="/tag-legacy.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: deployment" href="/tag-deployment.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: julia" href="/tag-julia.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: arch-linux" href="/tag-arch-linux.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: kotlin" href="/tag-kotlin.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: installation" href="/tag-installation.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: android" href="/tag-android.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: memo" href="/tag-memo.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: ASPNET" href="/tag-aspnet.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: tauri" href="/tag-tauri.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: qml" href="/tag-qml.rss">
+    <link rel="alternate" type="application/rss+xml" title="tag: qt6" href="/tag-qt6.rss">
+    <link rel="alternate" type="application/rss+xml" title="year: 2025" href="/archive-2025.rss">
     
 
     
+
     
     
 </head>
@@ -91,21 +103,27 @@ This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim
             <nav class="header-nav">
                 <ul class="header-name">
                     <li>
-                        <hgroup>
-                            <h2><a href="./" class="contrast">Home</a></h2>
+                        <hgroup class="h-card">
+                            <h2>
+                                <a href="/" class="contrast p-name u-url">
+                                    
+                                        Home
+                                    
+                                </a>
+                            </h2>
                             
                         </hgroup>
                     </li>
                 </ul>
                 <button id="menu-toggle" class="hamburger">&#9776;</button>
-                
+
                 <ul class="header-menu" id="header-menu">
                     
                       
                       
                     <li>
                         
-                        <a class="menu-item secondary"  href="./tags.html">Tags</a>
+                        <a class="menu-item secondary"  href="/tags.html">Tags</a>
                         
                     </li>
                     
@@ -113,7 +131,7 @@ This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim
                       
                     <li>
                         
-                        <a class="menu-item secondary"  href="./archive.html">Archive</a>
+                        <a class="menu-item secondary"  href="/archive.html">Archive</a>
                         
                     </li>
                     
@@ -121,7 +139,7 @@ This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim
                       
                     <li>
                         
-                        <a class="menu-item secondary"  href="./authors.html">Authors</a>
+                        <a class="menu-item secondary"  href="/authors.html">Authors</a>
                         
                     </li>
                     
@@ -138,14 +156,34 @@ This Week I try to setup Julia Development in Neovim in linux/wsl, I use lazyvim
 
 
 
-<article>
+<article class="h-entry">
+  <data class="p-name" value="Setup Julia in Neovim"></data>
+  <a class="u-url" href="/setup-julia-in-neovim.html" style="display: none;"></a>
+  
+  <time class="dt-published" datetime="2025-06-01T00:00:00+00:00" style="display: none;">Jun  1, 2025</time>
+  
+
+  
 
   
 
 
+<div class="content-title" id="title">
+    <h1>Setup Julia in Neovim</h1> 
+    
+
+
+<span class="content-date">
+    <small> Jun  1, 2025 - &#10710; 2 min</small>
+</span>
+
+</div>
+
+  
   
 
-  <div class="content-html"><h1><a href="#-setup-julia-in-neovim" aria-hidden="true" class="anchor" id="-setup-julia-in-neovim"></a>🔬 Setup Julia in Neovim</h1>
+  <div class="content-html e-content"><p><figure><img src="https://github.com/user-attachments/assets/3905b050-fb44-4c8f-bef6-4d85c808ebcd" alt="image" /></figure></p>
+<h1><a href="#-setup-julia-in-neovim" aria-hidden="true" class="anchor" id="-setup-julia-in-neovim"></a>🔬 Setup Julia in Neovim</h1>
 <blockquote>
 <p>short guide about setup <a href="https://julialang.org/">Julia</a></p>
 </blockquote>
@@ -202,15 +240,22 @@ PackageCompiler = &quot;9b87118b-4619-50d2-8e1e-99f35a4d4d9d&quot;
     <small> Jun  1, 2025 - &#10710; 2 min</small>
 </span>
 
+          
         </div>
 
         <ul class="content-tags">
           
-          <li><a href="./tag-linux.html">linux</a></li>
           
-          <li><a href="./tag-setup.html">setup</a></li>
           
-          <li><a href="./tag-julia.html">julia</a></li>
+          <li><a href="/tag-linux.html" class="p-category">linux</a></li>
+          
+          
+          
+          <li><a href="/tag-setup.html" class="p-category">setup</a></li>
+          
+          
+          
+          <li><a href="/tag-julia.html" class="p-category">julia</a></li>
           
         </ul>
       </div>
@@ -218,6 +263,7 @@ PackageCompiler = &quot;9b87118b-4619-50d2-8e1e-99f35a4d4d9d&quot;
   </footer>
   
 </article>
+
 
 
 
@@ -231,22 +277,39 @@ PackageCompiler = &quot;9b87118b-4619-50d2-8e1e-99f35a4d4d9d&quot;
     <ul>
       
       
+      <li><a href="/setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html">Setup Basic Qt6 Development Environment with QML LSP in Arch Linux</a></li>
       
       
-      <li><a href="./android-development-setup-without-android-studio-in-kotlin-multiplatform.html">⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</a></li>
       
       
-      <li><a href="./cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html">Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</a></li>
+      <li><a href="/android-development-setup-without-android-studio-in-kotlin-multiplatform.html">⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</a></li>
       
       
-      <li><a href="./passing-object-from-ascx-in-aspnet-webform.html">🍼 Passing Object From .ASCX in ASPNET Webform.</a></li>
+      <li><a href="/cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html">Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</a></li>
       
       
-      <li><a href="./deploying-marmite-site-to-github-pages-with-github-action.html">Deploying Marmite Site To Github Pages With Github Action</a></li>
+      <li><a href="/passing-object-from-ascx-in-aspnet-webform.html">🍼 Passing Object From .ASCX in ASPNET Webform.</a></li>
       
     </ul>
   </article>
   
+
+
+
+
+<article>
+  <nav style="display: flex; justify-content: space-between;">
+    <div>
+      <a href="/android-development-setup-without-android-studio-in-kotlin-multiplatform.html">← ⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</a>
+    </div>
+    <div>
+      <a href="/setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html">Setup Basic Qt6 Development Environment with QML LSP in Arch Linux →</a>
+    </div>
+  </nav>
+</article>
+
+
+
 
 
 
@@ -261,8 +324,8 @@ PackageCompiler = &quot;9b87118b-4619-50d2-8e1e-99f35a4d4d9d&quot;
         
     </main>
 
-    <script src="./static/marmite.js"></script>
-    <script src="./static/custom.js"></script>
+    <script src="/static/marmite.js"></script>
+    <script src="/static/custom.js"></script>
     
     
     

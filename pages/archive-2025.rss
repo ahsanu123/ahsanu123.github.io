@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link></link><description></description><pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate><lastBuildDate>Sun, 01 Jun 2025 13:01:54 GMT</lastBuildDate><generator>marmite</generator><item><title>Setup Julia in Neovim</title><link>/setup-julia-in-neovim.html</link><category>linux</category><category>setup</category><category>julia</category><guid>/setup-julia-in-neovim.html</guid><pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-setup-julia-in-neovim" aria-hidden="true" class="anchor" id="-setup-julia-in-neovim"></a>🔬 Setup Julia in Neovim</h1>
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link>http://</link><description></description><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><lastBuildDate>Tue, 04 Nov 2025 09:01:13 GMT</lastBuildDate><generator>marmite</generator><item><title>🐈 Cat Hierarchy</title><link>http:///cat-hierarchy.html</link><category>memo</category><guid>http:///cat-hierarchy.html</guid><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<div id="memo-cat"></div>
+<script src="./static/memo-cat.js"></script>
+]]></content:encoded></item><item><title>Setup Basic Qt6 Development Environment with QML LSP in Arch Linux</title><link>http:///setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html</link><category>qt6</category><category>qml</category><category>linux</category><category>arch-linux</category><guid>http:///setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html</guid><pubDate>Thu, 19 Jun 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/f66edddb-fb2f-49e4-8ef5-f017d03f9410" alt="image" /></figure></p>
+<h1><a href="#install-qt6-in-arch-linux" aria-hidden="true" class="anchor" id="install-qt6-in-arch-linux"></a>Install Qt6 in Arch Linux</h1>
+<div class="markdown-alert markdown-alert-note">
+<p class="markdown-alert-title">Note</p>
+<p>this small tutorial assume you has install base-devel, cmake, and ninja</p>
+</div>
+<p>first you need an sudo access, to install basic development package you need install following package</p>
+<pre><code class="language-shell">
+$ pacman -Ss qt6- | rg -i installed
+
+extra/qt6-base 6.9.1-1 (qt6) [installed]
+extra/qt6-declarative 6.9.1-1 (qt6) [installed]
+extra/qt6-languageserver 6.9.1-1 (qt6) [installed]
+extra/qt6-svg 6.9.1-1 (qt6) [installed]
+extra/qt6-translations 6.9.1-1 (qt6) [installed]
+
+</code></pre>
+<ul>
+<li>run <code>sudo pacman -S qt6-base qt6-declarative qt6-languageserver qt6-svg qt6-translations --noconfirm</code></li>
+<li>wait until complete</li>
+<li>next, to check if qt6 installed, we will compile basic qt example</li>
+<li>run <code>git clone https://github.com/qt/qtdoc.git</code></li>
+<li>then cd to qtdoc example coffe, <code>cd qtdoc/examples/demos/coffee</code></li>
+<li>run <code>cmake -S . -B build</code>, you can change <code>build</code> to another name (its build output)</li>
+<li>build example with <code>cmake --build build</code></li>
+<li>next you can run the example with <code>./build/coffeemachine</code></li>
+<li>if all working, you will see this</li>
+</ul>
+<h1><a href="#setup-lsp-with-neovim-lazyvim-config" aria-hidden="true" class="anchor" id="setup-lsp-with-neovim-lazyvim-config"></a>Setup LSP with Neovim (LazyVim config)</h1>
+<ul>
+<li>next to setup lsp we need to check installed <code>qmlls</code> in our <code>/usr/bin/qmlls6</code> (the name may difference based on version)</li>
+<li>you need change <code>cmd</code> argument from <code>nvim-lspconfig</code> based on your installed <code>qmlls</code> version inside <code>init.lua</code></li>
+</ul>
+<pre><code class="language-shell">
+ File: init.lua
+
+   1   │ -- bootstrap lazy.nvim, LazyVim and your plugins
+   2   │ require(&quot;config.lazy&quot;)
+   3 + │ 
+   4 + │ vim.lsp.enable(&quot;qmlls&quot;)
+   5 + │ vim.lsp.config(&quot;qmlls&quot;, {
+   6 + │   cmd = { &quot;qmlls6&quot; },
+   7 + │ })
+
+</code></pre>
+<ul>
+<li>then hopefully lsp will work :)</li>
+</ul>
+<p><figure><img src="https://github.com/user-attachments/assets/6059c854-a685-4bde-bf8c-45b85a6c7f52" alt="image" /></figure></p>
+<h2><a href="#reference" aria-hidden="true" class="anchor" id="reference"></a>Reference</h2>
+<ul>
+<li><a href="https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/qmlls.lua">nvim-lspconfig qmlls</a></li>
+</ul>
+]]></content:encoded></item><item><title>Setup Julia in Neovim</title><link>http:///setup-julia-in-neovim.html</link><category>linux</category><category>setup</category><category>julia</category><guid>http:///setup-julia-in-neovim.html</guid><pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/3905b050-fb44-4c8f-bef6-4d85c808ebcd" alt="image" /></figure></p>
+<h1><a href="#-setup-julia-in-neovim" aria-hidden="true" class="anchor" id="-setup-julia-in-neovim"></a>🔬 Setup Julia in Neovim</h1>
 <blockquote>
 <p>short guide about setup <a href="https://julialang.org/">Julia</a></p>
 </blockquote>
@@ -36,7 +92,7 @@ PackageCompiler = &quot;9b87118b-4619-50d2-8e1e-99f35a4d4d9d&quot;
 <ul>
 <li>if first trigger compiling not work from neovim (by opening julia file), try to trigger by run the server from mason folder <code>~/.local/share/nvim/mason/bin </code> then <code>./julia-lsp ~/path/to/external/julia/project</code></li>
 </ul>
-]]></content:encoded></item><item><title>⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</title><link>/android-development-setup-without-android-studio-in-kotlin-multiplatform.html</link><category>linux</category><category>setup</category><category>android</category><category>kotlin</category><category>kotlin multiplatform</category><guid>/android-development-setup-without-android-studio-in-kotlin-multiplatform.html</guid><pubDate>Fri, 04 Apr 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0" alt="banner" /></figure></p>
+]]></content:encoded></item><item><title>⛅ Android Development Setup Without Android Studio in Kotlin Multiplatform</title><link>http:///android-development-setup-without-android-studio-in-kotlin-multiplatform.html</link><category>linux</category><category>setup</category><category>android</category><category>kotlin</category><category>kotlin multiplatform</category><guid>http:///android-development-setup-without-android-studio-in-kotlin-multiplatform.html</guid><pubDate>Fri, 04 Apr 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/137052ba-02ef-4c2d-aa33-28e50acaffa0" alt="banner" /></figure></p>
 <ul>
 <li>ok first you need android cmdline tools <a href="https://developer.android.com/tools">link</a>, but mostly i use arch linux, and aur have this in <a href="https://aur.archlinux.org/packages/android-sdk-cmdline-tools-latest">link</a>, so run <code> yay -S android-sdk-cmdline-tools-latest --noconfirm</code></li>
 <li>but if you not in linux environment you need download cmdline-tools and extract it somewhere, make sure to export cmdline-tools folder to your environment</li>
@@ -133,7 +189,7 @@ List of devices attached
 <li>make sure to install kotlin in your system (i use neovim with lsp server, and kotlin lsp server need kotlin compiler), you can use sdkman (<a href="https://sdkman.io/install/">https://sdkman.io/install/</a>) to install kotlin.</li>
 <li>if lsp still fail to resolve <code>androidx</code> import, make sure you add <code>implementation(libs.androidx.core.ktx)</code> in <code>build.gradle.kts</code> inside <code>androidMain.dependencies</code></li>
 </ul>
-]]></content:encoded></item><item><title>Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</title><link>/cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</link><category>linux</category><category>howto</category><category>tauri</category><guid>/cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</guid><pubDate>Thu, 27 Mar 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w" aria-hidden="true" class="anchor" id="-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w"></a>🍄 Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</h1>
+]]></content:encoded></item><item><title>Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</title><link>http:///cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</link><category>linux</category><category>howto</category><category>tauri</category><guid>http:///cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w.html</guid><pubDate>Thu, 27 Mar 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w" aria-hidden="true" class="anchor" id="-cross-compile-tauri-on-docker-archlinuxarm-for-raspberry-pi-zero-2w"></a>🍄 Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w</h1>
 <blockquote>
 <p>Its just quick note about setup and cross compile tauri for archlinuxarm architecture in docker</p>
 </blockquote>
@@ -161,7 +217,7 @@ Docker version 28.0.1, build 068a01ea94
 <li>to copy from docker container use <code> docker cp tauri-container:/root/ams/app/src-tauri/target/release/bundle/deb/ams_0.1.0_armel.deb .</code></li>
 <li>to run docker with name use <code> docker run -it --rm --name tauri-container archlinuxarm:latest  /bin/bash</code></li>
 </ul>
-]]></content:encoded></item><item><title>🍼 Passing Object From .ASCX in ASPNET Webform.</title><link>/passing-object-from-ascx-in-aspnet-webform.html</link><category>linux</category><category>howto</category><category>ASPNET</category><category>legacy</category><guid>/passing-object-from-ascx-in-aspnet-webform.html</guid><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<blockquote>
+]]></content:encoded></item><item><title>🍼 Passing Object From .ASCX in ASPNET Webform.</title><link>http:///passing-object-from-ascx-in-aspnet-webform.html</link><category>linux</category><category>howto</category><category>ASPNET</category><category>legacy</category><guid>http:///passing-object-from-ascx-in-aspnet-webform.html</guid><pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<blockquote>
 <p><strong>copied from DeepSeek Answer</strong></p>
 </blockquote>
 <h1><a href="#steps-to-pass-an-object-from-ascx-file" aria-hidden="true" class="anchor" id="steps-to-pass-an-object-from-ascx-file"></a>Steps to Pass an Object from .ascx File</h1>
@@ -256,7 +312,7 @@ If you want to avoid data binding, you can use a static method to create the obj
 </li>
 </ul>
 <p>If you have further questions or need clarification, feel free to ask! 😊</p>
-]]></content:encoded></item><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>/deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>/deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
+]]></content:encoded></item><item><title>Deploying Marmite Site To Github Pages With Github Action</title><link>http:///deploying-marmite-site-to-github-pages-with-github-action.html</link><category>linux</category><category>howto</category><category>deployment</category><guid>http:///deploying-marmite-site-to-github-pages-with-github-action.html</guid><pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>💤 Introduction</h1>
 <p><a href="https://rochacbruno.github.io/marmite/hosting.html">on marmite documentation page</a>, the author already  explain how to
 deploy generated marmite's site into github pages, but the guide is
 using <code>cargo</code> to install marmite, which mean cargo will compile it
@@ -345,7 +401,7 @@ jobs:
 <li><a href="https://github.com/actions/jekyll-build-pages">Jekyll Github Action</a></li>
 <li><a href="https://rochacbruno.github.io/marmite/hosting.html">Official Marmite Hosting Guide</a></li>
 </ul>
-]]></content:encoded></item><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>/archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>/archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
+]]></content:encoded></item><item><title>archlinux wayland installation on raspberry pi zero 2</title><link>http:///archlinux-wayland-installation-on-raspberry-pi-zero-2.html</link><category>linux</category><category>howto</category><category>installation</category><guid>http:///archlinux-wayland-installation-on-raspberry-pi-zero-2.html</guid><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><source url="http://">archive-2025</source><content:encoded><![CDATA[<h1><a href="#-introduction" aria-hidden="true" class="anchor" id="-introduction"></a>🐧 Introduction</h1>
 <p><a href="#installation-step">(skip intro if you want, its not important)</a></p>
 <p>I have a raspberry pi zero 2 w (let's call it zero 2 after this),
 but I never use it, recently I got a plan to run a local web app on my pi zero 2,

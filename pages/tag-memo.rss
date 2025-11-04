@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link>http://</link><description></description><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><lastBuildDate>Tue, 04 Nov 2025 09:01:13 GMT</lastBuildDate><generator>marmite</generator><item><title>🐈 Cat Hierarchy</title><link>http:///cat-hierarchy.html</link><category>memo</category><guid>http:///cat-hierarchy.html</guid><pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate><source url="http://">tag-memo</source><content:encoded><![CDATA[<div id="memo-cat"></div>
+<script src="./static/memo-cat.js"></script>
+]]></content:encoded></item></channel></rss>

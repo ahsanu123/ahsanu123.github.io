@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home</title><link>http://</link><description></description><pubDate>Thu, 19 Jun 2025 00:00:00 GMT</pubDate><lastBuildDate>Tue, 04 Nov 2025 09:01:13 GMT</lastBuildDate><generator>marmite</generator><item><title>Setup Basic Qt6 Development Environment with QML LSP in Arch Linux</title><link>http:///setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html</link><category>qt6</category><category>qml</category><category>linux</category><category>arch-linux</category><guid>http:///setup-basic-qt6-development-environment-with-qml-lsp-in-arch-linux.html</guid><pubDate>Thu, 19 Jun 2025 00:00:00 GMT</pubDate><source url="http://">tag-qml</source><content:encoded><![CDATA[<p><figure><img src="https://github.com/user-attachments/assets/f66edddb-fb2f-49e4-8ef5-f017d03f9410" alt="image" /></figure></p>
+<h1><a href="#install-qt6-in-arch-linux" aria-hidden="true" class="anchor" id="install-qt6-in-arch-linux"></a>Install Qt6 in Arch Linux</h1>
+<div class="markdown-alert markdown-alert-note">
+<p class="markdown-alert-title">Note</p>
+<p>this small tutorial assume you has install base-devel, cmake, and ninja</p>
+</div>
+<p>first you need an sudo access, to install basic development package you need install following package</p>
+<pre><code class="language-shell">
+$ pacman -Ss qt6- | rg -i installed
+
+extra/qt6-base 6.9.1-1 (qt6) [installed]
+extra/qt6-declarative 6.9.1-1 (qt6) [installed]
+extra/qt6-languageserver 6.9.1-1 (qt6) [installed]
+extra/qt6-svg 6.9.1-1 (qt6) [installed]
+extra/qt6-translations 6.9.1-1 (qt6) [installed]
+
+</code></pre>
+<ul>
+<li>run <code>sudo pacman -S qt6-base qt6-declarative qt6-languageserver qt6-svg qt6-translations --noconfirm</code></li>
+<li>wait until complete</li>
+<li>next, to check if qt6 installed, we will compile basic qt example</li>
+<li>run <code>git clone https://github.com/qt/qtdoc.git</code></li>
+<li>then cd to qtdoc example coffe, <code>cd qtdoc/examples/demos/coffee</code></li>
+<li>run <code>cmake -S . -B build</code>, you can change <code>build</code> to another name (its build output)</li>
+<li>build example with <code>cmake --build build</code></li>
+<li>next you can run the example with <code>./build/coffeemachine</code></li>
+<li>if all working, you will see this</li>
+</ul>
+<h1><a href="#setup-lsp-with-neovim-lazyvim-config" aria-hidden="true" class="anchor" id="setup-lsp-with-neovim-lazyvim-config"></a>Setup LSP with Neovim (LazyVim config)</h1>
+<ul>
+<li>next to setup lsp we need to check installed <code>qmlls</code> in our <code>/usr/bin/qmlls6</code> (the name may difference based on version)</li>
+<li>you need change <code>cmd</code> argument from <code>nvim-lspconfig</code> based on your installed <code>qmlls</code> version inside <code>init.lua</code></li>
+</ul>
+<pre><code class="language-shell">
+ File: init.lua
+
+   1   │ -- bootstrap lazy.nvim, LazyVim and your plugins
+   2   │ require(&quot;config.lazy&quot;)
+   3 + │ 
+   4 + │ vim.lsp.enable(&quot;qmlls&quot;)
+   5 + │ vim.lsp.config(&quot;qmlls&quot;, {
+   6 + │   cmd = { &quot;qmlls6&quot; },
+   7 + │ })
+
+</code></pre>
+<ul>
+<li>then hopefully lsp will work :)</li>
+</ul>
+<p><figure><img src="https://github.com/user-attachments/assets/6059c854-a685-4bde-bf8c-45b85a6c7f52" alt="image" /></figure></p>
+<h2><a href="#reference" aria-hidden="true" class="anchor" id="reference"></a>Reference</h2>
+<ul>
+<li><a href="https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/qmlls.lua">nvim-lspconfig qmlls</a></li>
+</ul>
+]]></content:encoded></item></channel></rss>
