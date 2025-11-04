@@ -3,3 +3,8 @@ tagline: Electronic Engineer
 url: https://ahsanu123.github.io/
 menu: 
   - ["About", "about.html"]
+
+
+templates_path: templates
+static_path: static
+media_path: media
