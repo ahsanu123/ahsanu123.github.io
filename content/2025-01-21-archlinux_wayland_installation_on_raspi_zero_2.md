@@ -135,7 +135,7 @@ you can read other shortcut key on `~/.config/sway/config`, to ease of reading c
 
 if something error when you run `sway`, install below then try to restart by `sudo reboot now`.
 
-- try to install _glib2_, `sudo pacman -S glib2 --noconfirm` 
+- try to install _glib2_, `sudo pacman -S glib2 xf86-video-fbdev glu mesa-utils --noconfirm` 
 
 ## Reference 
 
