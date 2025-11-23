@@ -95,12 +95,13 @@ umount boot root
   - try to ping `ping 1.1.1.1`, make sure you got a response
 
 - if `wpa_supplicant` and `wpa_passphrase` not working, try to use `netctl` by
-  - set wlan0 (or your device down) -> `sudo ip link wlan0 down`
+  - set wlan0 (or your device down) -> `sudo ip link set wlan0 down`
   - then create/or copy `netctl` config by copying from `/etc/netctl/examples`, change SSID and password based on your need 
   - then run `netctl stop-all` to stop all services of netctl
   - finally run your config by `netctl start yourConfigName`, hopefully its connect 
   - now try to ping `ping 1.1.1.1`, make sure you got a response
 
+- if you still cant connect to any password protected network, try to use mobile network (tethering), there is example inside `etc/netctl/example`, it always work for me
 - Initialize the pacman keyring and populate the Arch Linux ARM package signing keys:
 ```shell
 pacman-key --init
