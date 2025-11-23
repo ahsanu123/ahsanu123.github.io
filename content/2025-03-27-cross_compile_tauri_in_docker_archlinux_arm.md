@@ -27,8 +27,7 @@ Docker version 28.0.1, build 068a01ea94
 - next login as root and we will install required package to cross compile `pacman  -Syu  --needed  sudo webkit2gtk-4.1   base-devel  curl   wget   file   openssl   appmenu-gtk-module   libappindicator-gtk3  librsvg yarn git rustup nodejs unzip cargo-tauri gcc make binutils --noconfirm`
 - then install default toolchain for current architecture with `rustup default stable`
 - inside root user run this `echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers`
-- we need `arm-linux-gnueabihf-gcc` from aur, https://aur.archlinux.org/packages/arm-linux-gnueabihf-gcc
-- next we need `yay` to install `arm-linux-gnueabihf-gcc`
+- if somethink error because system cant find linker `arm-linux-gnueabihf-gcc`, try to add `export  ARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER=gcc`
 - you can follow the instruction on yay [repo](https://github.com/Jguer/yay)
 - if you dont have permission to automatically install, you can run `makepkg -s` to only build, then run `pacman -U --noconfirm yay-bin-*.pkg.tar.xz` to install using pacman.
 - dont forget to run this after yay installation `yay -Y --gendb`
