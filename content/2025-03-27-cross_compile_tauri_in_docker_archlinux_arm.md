@@ -24,7 +24,7 @@ Docker version 28.0.1, build 068a01ea94
 - init pacman key with `pacman-key --init`
 - then `pacman-key --populate archlinuxarm`
 - finally update all package with `pacman -Syu`
-- next login as root and we will install required package to cross compile `pacman  -Syu  --needed  sudo webkit2gtk-4.1   base-devel  curl   wget   file   openssl   appmenu-gtk-module   libappindicator-gtk3  librsvg yarn git rustup nodejs unzip cargo-tauri --noconfirm`
+- next login as root and we will install required package to cross compile `pacman  -Syu  --needed  sudo webkit2gtk-4.1   base-devel  curl   wget   file   openssl   appmenu-gtk-module   libappindicator-gtk3  librsvg yarn git rustup nodejs unzip cargo-tauri gcc make binutils --noconfirm`
 - then install default toolchain for current architecture with `rustup default stable`
 - inside root user run this `echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers`
 - we need `arm-linux-gnueabihf-gcc` from aur, https://aur.archlinux.org/packages/arm-linux-gnueabihf-gcc
