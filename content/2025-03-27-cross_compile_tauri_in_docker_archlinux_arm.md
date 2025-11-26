@@ -5,7 +5,7 @@ tags: linux, howto, tauri
 ---
 
 # 🍄 Cross Compile Tauri on Docker Archlinuxarm for Raspberry pi zero 2w 
-
+https://gnome.pages.gitlab.gnome.org/librsvg/devel-docs/compiling.html
 > Its just quick note about setup and cross compile tauri for archlinuxarm architecture in docker 
 
 first you need Docker installed on your system
