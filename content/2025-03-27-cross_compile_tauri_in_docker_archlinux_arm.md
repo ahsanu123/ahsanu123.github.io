@@ -18,10 +18,7 @@ $ docker --version
 Docker version 28.0.1, build 068a01ea94  
 ```
 - download Archlinuxarm image with `wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-armv7-latest.tar.gz`
-- next create folder to extract it `mkdir archlinuxarm`
-- extract to `archlinuxarm` by `tar -xpf ArchLinuxARM-rpi-armv7-latest.tar.gz -C archlinuxarm`
-- then change directory with `cd archlinuxarm`
-- now we will import extracted file to docker with `tar -cpf - . | docker import - archlinuxarm:latest`
+- next import with `docker import ArchLinuxARM-rpi-armv7-latest.tar.gz`
 - then run with, `docker run -it --rm archlinuxarm:latest /bin/bash `, it will run bash with interactive shell `--rm` will remove all data after you logout from shell
 - if error when docker run, try to add qemu -> `docker run --rm --privileged multiarch/qemu-user-static --reset -p yes`
 - init pacman key with `pacman-key --init`
